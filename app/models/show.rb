@@ -6,4 +6,24 @@ class Show < ActiveRecord::Base
   def self.most_popular_show
     Show.find_by(rating: self.highest_rating)
   end 
+  
+  def self.lowest_rating
+    Show.minimum(:rating)
+  end 
+  
+  def self.least_popular_show
+    Show.find_by(rating: self.lowest_rating)
+  end 
+  
+  def self.ratings_sum
+    Show.sum(:rating)
+  end 
+  
+  def self.popular_shows 
+    Show.where("Rating > ?", 5)
+  end 
+  
+  def self.shows_by_alphabethical_order 
+    Show.sort(:name)
+  end 
 end 
